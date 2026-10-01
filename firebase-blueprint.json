@@ -1,0 +1,58 @@
+{
+  "entities": {
+    "AppData": {
+      "title": "AppData",
+      "description": "Full application configuration, settings, memories and locations for Bizim 3. Yılımız",
+      "type": "object",
+      "properties": {
+        "security": {
+          "type": "object",
+          "description": "Security settings and entry password hash"
+        },
+        "counter": {
+          "type": "object",
+          "description": "Live anniversary counter settings"
+        },
+        "welcome": {
+          "type": "object",
+          "description": "Opening screen welcome quote"
+        },
+        "letter": {
+          "type": "object",
+          "description": "Love letter and special poem text"
+        },
+        "daisySpeed": {
+          "type": "string",
+          "enum": ["yavas", "orta", "hizli"],
+          "description": "Daisy blooming animation speed"
+        },
+        "backgroundWords": {
+          "type": "array",
+          "description": "Floating romantic words list"
+        },
+        "whispers": {
+          "type": "array",
+          "description": "Heart whispers collection"
+        },
+        "memories": {
+          "type": "array",
+          "description": "Timeline memories and photos"
+        },
+        "locations": {
+          "type": "array",
+          "description": "Special places and map entries"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last update timestamp"
+        }
+      }
+    }
+  },
+  "firestore": {
+    "/app_data/{docId}": {
+      "schema": "AppData",
+      "description": "Main application data store"
+    }
+  }
+}

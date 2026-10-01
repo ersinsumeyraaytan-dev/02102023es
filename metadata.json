@@ -1,0 +1,6 @@
+{
+  "name": "Bizim 3. Yılımız",
+  "description": "Bizim 3. yılımıza özel romantik aşk masalımız, anılarımız ve özel anlarımız.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

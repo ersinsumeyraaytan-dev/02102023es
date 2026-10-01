@@ -1,0 +1,482 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-script: 'Great Vibes', cursive;
+    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  ::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+}
+
+.font-serif-romantic {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-script-love {
+  font-family: 'Great Vibes', cursive;
+}
+
+.font-sans-clean {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   📱 PC AMBIENT DARK BACKDROP & 430px MOBILE FRAME MANDATORY STYLING
+   ═════════════════════════════════════════════════════════════════════ */
+.pc-outer-stage {
+  min-height: 100vh;
+  width: 100%;
+  background: radial-gradient(circle at 50% 25%, #1a0715 0%, #0c030a 50%, #040104 100%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.mobile-app-container {
+  width: 100%;
+  max-width: 430px !important;
+  min-height: 100vh !important;
+  margin: 0 auto !important;
+  position: relative !important;
+  overflow-x: hidden;
+}
+
+@media (min-width: 640px) {
+  .pc-outer-stage {
+    padding: 24px 16px;
+    align-items: center;
+  }
+  .mobile-app-container {
+    min-height: 860px !important;
+    max-height: 92vh !important;
+    border-radius: 44px;
+    box-shadow: 0 0 70px rgba(244, 63, 94, 0.18), 0 30px 70px rgba(0, 0, 0, 0.9), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    border: 8px solid #1a0715;
+    overflow-y: auto;
+  }
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   🌸 PAPATYA DÖNÜŞTÜRÜLMÜŞ ORİJİNAL CSS KODLARI
+   ═════════════════════════════════════════════════════════════════════ */
+:root {
+  --daisy-white: #ffffff;
+  --daisy-yellow: #ffce00;
+  --daisy-center-dark: #ffa000;
+  --daisy-stem: #2e7d32;
+  --daisy-stem-light: #4caf50;
+}
+
+.night {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.not-loaded * {
+  animation-play-state: paused !important;
+}
+
+.flowers {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scale(0.55);
+  transform-origin: bottom center;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.flower {
+  position: absolute;
+  bottom: 0;
+  transform-origin: bottom center;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+/* Taç Yapraklar - Kar Beyazı */
+.flower__leaf {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 8vmin;
+  height: 11vmin;
+  border-radius: 51% 49% 47% 53% / 44% 45% 55% 69%;
+  background-color: var(--daisy-white);
+  background-image: linear-gradient(to top, #eceff1, var(--daisy-white));
+  transform-origin: bottom center;
+  box-shadow: inset 0 0 1vmin rgba(0, 0, 0, 0.1);
+}
+
+/* 8 Taç Yaprak Dönüş Açıları */
+.flower__leaf--1 { transform: translate(-50%, 0%) rotate(0deg); }
+.flower__leaf--2 { transform: translate(-50%, 0%) rotate(45deg); }
+.flower__leaf--3 { transform: translate(-50%, 0%) rotate(90deg); }
+.flower__leaf--4 { transform: translate(-50%, 0%) rotate(135deg); }
+.flower__leaf--5 { transform: translate(-50%, 0%) rotate(180deg); }
+.flower__leaf--6 { transform: translate(-50%, 0%) rotate(225deg); }
+.flower__leaf--7 { transform: translate(-50%, 0%) rotate(270deg); }
+.flower__leaf--8 { transform: translate(-50%, 0%) rotate(315deg); }
+
+/* Çiçek Göbeği - Sıcak Sarı */
+.flower__white-circle {
+  position: absolute;
+  left: -3.5vmin;
+  top: -3vmin;
+  width: 9vmin;
+  height: 9vmin;
+  border-radius: 50%;
+  background-color: var(--daisy-yellow);
+  background-image: radial-gradient(circle, var(--daisy-yellow) 60%, var(--daisy-center-dark));
+  box-shadow: 0 0 1vmin rgba(255, 206, 0, 0.5);
+  z-index: 25;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: pulse-glow 3s ease-in-out infinite alternate;
+}
+
+.flower--2 .flower__white-circle { animation-delay: 0.5s; }
+.flower--3 .flower__white-circle { animation-delay: 1s; }
+.flower--4 .flower__white-circle { animation-delay: 1.5s; }
+.flower--5 .flower__white-circle { animation-delay: 0.8s; }
+.flower--6 .flower__white-circle { animation-delay: 1.3s; }
+.flower--7 .flower__white-circle { animation-delay: 0.3s; }
+.flower--8 .flower__white-circle { animation-delay: 1.7s; }
+
+.flower__white-circle:active {
+  transform: scale(0.92);
+}
+
+/* Saplar - Doğal Yeşil */
+.flower__line {
+  height: 55vmin;
+  width: 1.5vmin;
+  background-image: linear-gradient(to top, var(--daisy-stem), var(--daisy-stem-light));
+  border-radius: 1vmin;
+  z-index: 1;
+  animation: growing-flower-tree 2s backwards;
+  transform-origin: bottom center;
+}
+
+.flower__leafs {
+  position: relative;
+  z-index: 20; /* Sapların KESİNLİKLE üstünde durması için */
+  animation: blooming-flower 2s backwards;
+}
+
+/* Sap Üzerindeki Doğal Yapraklar */
+.flower__line__leaf {
+  position: absolute;
+  width: 7vmin;
+  height: 11vmin;
+  background-image: linear-gradient(to top, rgba(46, 125, 50, 0.7), var(--daisy-stem-light));
+  border-radius: 10vmin 2vmin 10vmin 2vmin;
+  transform-origin: bottom left;
+  z-index: 1;
+}
+
+.flower__line__leaf--1 {
+  top: 20%;
+  left: 90%;
+  transform: rotate(-30deg) rotateY(-180deg);
+}
+
+.flower__line__leaf--2 {
+  top: 45%;
+  left: 90%;
+  transform: rotate(-25deg) rotateY(-180deg);
+}
+
+.flower__line__leaf--3 {
+  top: 15%;
+  left: -450%;
+  transform: rotate(30deg);
+}
+
+.flower__line__leaf--4 {
+  top: 42%;
+  left: -450%;
+  transform: rotate(25deg);
+}
+
+/* 8 Papatyanın Eğimli, Kavisli ve Doğal Pozisyonları */
+.flower--1 {
+  left: 50%;
+  transform: translate(-50%, 0) rotate(2deg);
+  animation: moving-flower-1 4s linear infinite;
+}
+.flower--1 .flower__line {
+  height: 65vmin;
+  animation-delay: 0.2s;
+}
+
+.flower--2 {
+  left: 44%;
+  transform: rotate(-18deg);
+  animation: moving-flower-2 4.5s ease-in-out infinite alternate;
+}
+.flower--2 .flower__line {
+  height: 54vmin;
+  animation-delay: 0.4s;
+}
+
+.flower--3 {
+  left: 56%;
+  transform: rotate(18deg);
+  animation: moving-flower-3 4s ease-in-out infinite alternate;
+}
+.flower--3 .flower__line {
+  height: 58vmin;
+  animation-delay: 0.6s;
+}
+
+.flower--4 {
+  left: 35%;
+  transform: rotate(-28deg);
+  animation: moving-flower-4 5s ease-in-out infinite alternate;
+}
+.flower--4 .flower__line {
+  height: 48vmin;
+  animation-delay: 0.8s;
+}
+
+.flower--5 {
+  left: 65%;
+  transform: rotate(28deg);
+  animation: moving-flower-5 4.8s ease-in-out infinite alternate;
+}
+.flower--5 .flower__line {
+  height: 50vmin;
+  animation-delay: 0.5s;
+}
+
+.flower--6 {
+  left: 26%;
+  transform: rotate(-38deg);
+  animation: moving-flower-6 5.2s ease-in-out infinite alternate;
+}
+.flower--6 .flower__line {
+  height: 42vmin;
+  animation-delay: 0.9s;
+}
+
+.flower--7 {
+  left: 74%;
+  transform: rotate(38deg);
+  animation: moving-flower-7 4.6s ease-in-out infinite alternate;
+}
+.flower--7 .flower__line {
+  height: 44vmin;
+  animation-delay: 0.7s;
+}
+
+.flower--8 {
+  left: 50%;
+  transform: translate(-30%, 0) rotate(-7deg);
+  animation: moving-flower-8 4.2s ease-in-out infinite alternate;
+}
+.flower--8 .flower__line {
+  height: 55vmin;
+  animation-delay: 0.35s;
+}
+
+/* ═════════════════════════════════════════════════════════════════
+   KEYFRAMES FOR ORIGINAL FLOWER BLOOM & MOVING SWAY
+   ═════════════════════════════════════════════════════════════════ */
+@keyframes growing-flower-tree {
+  0% {
+    height: 0;
+    border-radius: 1vmin;
+  }
+}
+
+@keyframes blooming-flower {
+  0% {
+    transform: scale(0);
+  }
+}
+
+@keyframes moving-flower-1 {
+  0%, 100% {
+    transform: translate(-50%, 0) rotate(2deg);
+  }
+  50% {
+    transform: translate(-50%, 0) rotate(-2deg);
+  }
+}
+
+@keyframes moving-flower-2 {
+  0%, 100% {
+    transform: rotate(-18deg);
+  }
+  50% {
+    transform: rotate(-13deg);
+  }
+}
+
+@keyframes moving-flower-3 {
+  0%, 100% {
+    transform: rotate(18deg);
+  }
+  50% {
+    transform: rotate(23deg);
+  }
+}
+
+@keyframes moving-flower-4 {
+  0%, 100% {
+    transform: rotate(-28deg);
+  }
+  50% {
+    transform: rotate(-23deg);
+  }
+}
+
+@keyframes moving-flower-5 {
+  0%, 100% {
+    transform: rotate(28deg);
+  }
+  50% {
+    transform: rotate(33deg);
+  }
+}
+
+@keyframes moving-flower-6 {
+  0%, 100% {
+    transform: rotate(-38deg);
+  }
+  50% {
+    transform: rotate(-33deg);
+  }
+}
+
+@keyframes moving-flower-7 {
+  0%, 100% {
+    transform: rotate(38deg);
+  }
+  50% {
+    transform: rotate(43deg);
+  }
+}
+
+@keyframes moving-flower-8 {
+  0%, 100% {
+    transform: translate(-30%, 0) rotate(-7deg);
+  }
+  50% {
+    transform: translate(-30%, 0) rotate(-2deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 1vmin rgba(255, 206, 0, 0.45), inset 0 0 0.5vmin rgba(255, 255, 255, 0.3);
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow: 0 0 2.4vmin rgba(255, 206, 0, 0.85), 0 0 4.5vmin rgba(255, 160, 0, 0.4), inset 0 0 1vmin rgba(255, 255, 255, 0.55);
+    filter: brightness(1.1);
+  }
+  100% {
+    box-shadow: 0 0 1vmin rgba(255, 206, 0, 0.45), inset 0 0 0.5vmin rgba(255, 255, 255, 0.3);
+    filter: brightness(1);
+  }
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   🔑 PASSWORD MODAL SHAKE ANIMATION (EXACTLY ONCE, 0.35s)
+   ═════════════════════════════════════════════════════════════════════ */
+@keyframes subtleShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20%, 60% {
+    transform: translateX(-6px);
+  }
+  40%, 80% {
+    transform: translateX(6px);
+  }
+}
+
+.animate-shake-once {
+  animation: subtleShake 0.35s ease-in-out 1 forwards;
+}
+
+/* Tap Floating Hearts */
+@keyframes heartFloatUp {
+  0% {
+    transform: translate(-50%, -50%) scale(0.4) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% - 40px)) scale(1.1) rotate(var(--rot, 15deg));
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(calc(-50% + calc(var(--dx, 0px) * 1.5)), calc(-50% - 95px)) scale(0.8) rotate(calc(var(--rot, 15deg) * 2));
+    opacity: 0;
+  }
+}
+
+.click-heart {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  animation: heartFloatUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   🌸 SMOOTH PAGE & TAB TRANSITIONS (FADE-IN + SLIDE-UP)
+   ═════════════════════════════════════════════════════════════════════ */
+@keyframes pageFadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition-enter {
+  animation: pageFadeSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
