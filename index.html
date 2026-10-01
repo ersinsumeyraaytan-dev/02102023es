@@ -10,16 +10,1880 @@
     <meta property="og:description" content="Bizim 3. yılımıza özel romantik aşk masalımız, anılarımız ve özel anlarımız." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Firebase SDK (v10 Compat) -->
+
+    <!-- Tailwind CSS (CDN - No Build Tools Required) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+              script: ['"Great Vibes"', 'cursive'],
+              sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Canvas Confetti (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+
+    <!-- Firebase App & Database Compat SDK (CDN) -->
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+    <!-- BİREBİR ORİJİNAL PAPATYA VE AMBİYANS STİLLERİ -->
+    <style>
+      :root {
+        --daisy-white: #ffffff;
+        --daisy-yellow: #ffce00;
+        --daisy-center-dark: #ffa000;
+        --daisy-stem: #2e7d32;
+        --daisy-stem-light: #4caf50;
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+      }
+
+      ::-webkit-scrollbar {
+        display: none !important;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      }
+
+      .font-serif-romantic {
+        font-family: 'Cormorant Garamond', Georgia, serif;
+      }
+
+      .font-script-love {
+        font-family: 'Great Vibes', cursive;
+      }
+
+      .font-sans-clean {
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      }
+
+      /* 📱 PC Ambient Stage & 430px Mobile Container */
+      .pc-outer-stage {
+        min-height: 100vh;
+        width: 100%;
+        background: radial-gradient(circle at 50% 25%, #1a0715 0%, #0c030a 50%, #040104 100%);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 0;
+        margin: 0;
+      }
+
+      .mobile-app-container {
+        width: 100%;
+        max-width: 430px !important;
+        min-height: 100vh !important;
+        margin: 0 auto !important;
+        position: relative !important;
+        overflow-x: hidden;
+      }
+
+      @media (min-width: 640px) {
+        .pc-outer-stage {
+          padding: 24px 16px;
+          align-items: center;
+        }
+        .mobile-app-container {
+          min-height: 860px !important;
+          max-height: 92vh !important;
+          border-radius: 44px;
+          box-shadow: 0 0 70px rgba(244, 63, 94, 0.18), 0 30px 70px rgba(0, 0, 0, 0.9), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+          border: 8px solid #1a0715;
+          overflow-y: auto;
+        }
+      }
+
+      /* 🌸 PAPATYA DÖNÜŞTÜRÜLMÜŞ ORİJİNAL CSS KODLARI */
+      .night {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 380px;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .not-loaded * {
+        animation-play-state: paused !important;
+      }
+
+      .flowers {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%) scale(0.55);
+        transform-origin: bottom center;
+        width: 100%;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        z-index: 10;
+        pointer-events: none;
+      }
+
+      .flower {
+        position: absolute;
+        bottom: 0;
+        transform-origin: bottom center;
+        z-index: 10;
+        pointer-events: auto;
+      }
+
+      /* Taç Yapraklar - Kar Beyazı */
+      .flower__leaf {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 8vmin;
+        height: 11vmin;
+        border-radius: 51% 49% 47% 53% / 44% 45% 55% 69%;
+        background-color: var(--daisy-white);
+        background-image: linear-gradient(to top, #eceff1, var(--daisy-white));
+        transform-origin: bottom center;
+        box-shadow: inset 0 0 1vmin rgba(0, 0, 0, 0.1);
+      }
+
+      /* 8 Taç Yaprak Dönüş Açıları */
+      .flower__leaf--1 { transform: translate(-50%, 0%) rotate(0deg); }
+      .flower__leaf--2 { transform: translate(-50%, 0%) rotate(45deg); }
+      .flower__leaf--3 { transform: translate(-50%, 0%) rotate(90deg); }
+      .flower__leaf--4 { transform: translate(-50%, 0%) rotate(135deg); }
+      .flower__leaf--5 { transform: translate(-50%, 0%) rotate(180deg); }
+      .flower__leaf--6 { transform: translate(-50%, 0%) rotate(225deg); }
+      .flower__leaf--7 { transform: translate(-50%, 0%) rotate(270deg); }
+      .flower__leaf--8 { transform: translate(-50%, 0%) rotate(315deg); }
+
+      /* Çiçek Göbeği - Sıcak Sarı & Yumuşak Parıldama */
+      .flower__white-circle {
+        position: absolute;
+        left: -3.5vmin;
+        top: -3vmin;
+        width: 9vmin;
+        height: 9vmin;
+        border-radius: 50%;
+        background-color: var(--daisy-yellow);
+        background-image: radial-gradient(circle, var(--daisy-yellow) 60%, var(--daisy-center-dark));
+        box-shadow: 0 0 1vmin rgba(255, 206, 0, 0.5);
+        z-index: 25;
+        cursor: pointer;
+        transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        animation: pulse-glow 3s ease-in-out infinite alternate;
+      }
+
+      .flower--2 .flower__white-circle { animation-delay: 0.5s; }
+      .flower--3 .flower__white-circle { animation-delay: 1s; }
+      .flower--4 .flower__white-circle { animation-delay: 1.5s; }
+      .flower--5 .flower__white-circle { animation-delay: 0.8s; }
+      .flower--6 .flower__white-circle { animation-delay: 1.3s; }
+      .flower--7 .flower__white-circle { animation-delay: 0.3s; }
+      .flower--8 .flower__white-circle { animation-delay: 1.7s; }
+
+      .flower__white-circle:active {
+        transform: scale(0.92);
+      }
+
+      /* Saplar - Doğal Yeşil */
+      .flower__line {
+        height: 55vmin;
+        width: 1.5vmin;
+        background-image: linear-gradient(to top, var(--daisy-stem), var(--daisy-stem-light));
+        border-radius: 1vmin;
+        z-index: 1;
+        animation: growing-flower-tree 2s backwards;
+        transform-origin: bottom center;
+      }
+
+      .flower__leafs {
+        position: relative;
+        z-index: 20; /* Sapların KESİNLİKLE üstünde durur */
+        animation: blooming-flower 2s backwards;
+      }
+
+      /* Sap Üzerindeki Doğal Yapraklar */
+      .flower__line__leaf {
+        position: absolute;
+        width: 7vmin;
+        height: 11vmin;
+        background-image: linear-gradient(to top, rgba(46, 125, 50, 0.7), var(--daisy-stem-light));
+        border-radius: 10vmin 2vmin 10vmin 2vmin;
+        transform-origin: bottom left;
+        z-index: 1;
+      }
+
+      .flower__line__leaf--1 {
+        top: 20%;
+        left: 90%;
+        transform: rotate(-30deg) rotateY(-180deg);
+      }
+
+      .flower__line__leaf--2 {
+        top: 45%;
+        left: 90%;
+        transform: rotate(-25deg) rotateY(-180deg);
+      }
+
+      .flower__line__leaf--3 {
+        top: 15%;
+        left: -450%;
+        transform: rotate(30deg);
+      }
+
+      .flower__line__leaf--4 {
+        top: 42%;
+        left: -450%;
+        transform: rotate(25deg);
+      }
+
+      /* 8 Papatyanın Eğimli, Kavisli ve Doğal Pozisyonları */
+      .flower--1 {
+        left: 50%;
+        transform: translate(-50%, 0) rotate(2deg);
+        animation: moving-flower-1 4s linear infinite;
+      }
+      .flower--1 .flower__line {
+        height: 65vmin;
+        animation-delay: 0.2s;
+      }
+
+      .flower--2 {
+        left: 44%;
+        transform: rotate(-18deg);
+        animation: moving-flower-2 4.5s ease-in-out infinite alternate;
+      }
+      .flower--2 .flower__line {
+        height: 54vmin;
+        animation-delay: 0.4s;
+      }
+
+      .flower--3 {
+        left: 56%;
+        transform: rotate(18deg);
+        animation: moving-flower-3 4s ease-in-out infinite alternate;
+      }
+      .flower--3 .flower__line {
+        height: 58vmin;
+        animation-delay: 0.6s;
+      }
+
+      .flower--4 {
+        left: 35%;
+        transform: rotate(-28deg);
+        animation: moving-flower-4 5s ease-in-out infinite alternate;
+      }
+      .flower--4 .flower__line {
+        height: 48vmin;
+        animation-delay: 0.8s;
+      }
+
+      .flower--5 {
+        left: 65%;
+        transform: rotate(28deg);
+        animation: moving-flower-5 4.8s ease-in-out infinite alternate;
+      }
+      .flower--5 .flower__line {
+        height: 50vmin;
+        animation-delay: 0.5s;
+      }
+
+      .flower--6 {
+        left: 26%;
+        transform: rotate(-38deg);
+        animation: moving-flower-6 5.2s ease-in-out infinite alternate;
+      }
+      .flower--6 .flower__line {
+        height: 42vmin;
+        animation-delay: 0.9s;
+      }
+
+      .flower--7 {
+        left: 74%;
+        transform: rotate(38deg);
+        animation: moving-flower-7 4.6s ease-in-out infinite alternate;
+      }
+      .flower--7 .flower__line {
+        height: 44vmin;
+        animation-delay: 0.7s;
+      }
+
+      .flower--8 {
+        left: 50%;
+        transform: translate(-30%, 0) rotate(-7deg);
+        animation: moving-flower-8 4.2s ease-in-out infinite alternate;
+      }
+      .flower--8 .flower__line {
+        height: 55vmin;
+        animation-delay: 0.35s;
+      }
+
+      /* ═════════════════════════════════════════════════════════════════
+         KEYFRAMES
+         ═════════════════════════════════════════════════════════════════ */
+      @keyframes growing-flower-tree {
+        0% { height: 0; border-radius: 1vmin; }
+      }
+
+      @keyframes blooming-flower {
+        0% { transform: scale(0); }
+      }
+
+      @keyframes pulse-glow {
+        0% {
+          box-shadow: 0 0 1vmin rgba(255, 206, 0, 0.45), inset 0 0 0.5vmin rgba(255, 255, 255, 0.3);
+          filter: brightness(1);
+        }
+        50% {
+          box-shadow: 0 0 2.4vmin rgba(255, 206, 0, 0.85), 0 0 4.5vmin rgba(255, 160, 0, 0.4), inset 0 0 1vmin rgba(255, 255, 255, 0.55);
+          filter: brightness(1.1);
+        }
+        100% {
+          box-shadow: 0 0 1vmin rgba(255, 206, 0, 0.45), inset 0 0 0.5vmin rgba(255, 255, 255, 0.3);
+          filter: brightness(1);
+        }
+      }
+
+      @keyframes moving-flower-1 {
+        0%, 100% { transform: translate(-50%, 0) rotate(2deg); }
+        50% { transform: translate(-50%, 0) rotate(-2deg); }
+      }
+
+      @keyframes moving-flower-2 {
+        0%, 100% { transform: rotate(-18deg); }
+        50% { transform: rotate(-13deg); }
+      }
+
+      @keyframes moving-flower-3 {
+        0%, 100% { transform: rotate(18deg); }
+        50% { transform: rotate(23deg); }
+      }
+
+      @keyframes moving-flower-4 {
+        0%, 100% { transform: rotate(-28deg); }
+        50% { transform: rotate(-23deg); }
+      }
+
+      @keyframes moving-flower-5 {
+        0%, 100% { transform: rotate(28deg); }
+        50% { transform: rotate(33deg); }
+      }
+
+      @keyframes moving-flower-6 {
+        0%, 100% { transform: rotate(-38deg); }
+        50% { transform: rotate(-33deg); }
+      }
+
+      @keyframes moving-flower-7 {
+        0%, 100% { transform: rotate(38deg); }
+        50% { transform: rotate(43deg); }
+      }
+
+      @keyframes moving-flower-8 {
+        0%, 100% { transform: translate(-30%, 0) rotate(-7deg); }
+        50% { transform: translate(-30%, 0) rotate(-2deg); }
+      }
+
+      @keyframes subtleShake {
+        0%, 100% { transform: translateX(0); }
+        20%, 60% { transform: translateX(-6px); }
+        40%, 80% { transform: translateX(6px); }
+      }
+
+      .animate-shake-once {
+        animation: subtleShake 0.35s ease-in-out 1 forwards;
+      }
+
+      @keyframes heartFloatUp {
+        0% {
+          transform: translate(-50%, -50%) scale(0.4) rotate(0deg);
+          opacity: 1;
+        }
+        50% {
+          transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% - 40px)) scale(1.1) rotate(var(--rot, 15deg));
+          opacity: 0.9;
+        }
+        100% {
+          transform: translate(calc(-50% + calc(var(--dx, 0px) * 1.5)), calc(-50% - 95px)) scale(0.8) rotate(calc(var(--rot, 15deg) * 2));
+          opacity: 0;
+        }
+      }
+
+      .click-heart {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        animation: heartFloatUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      @keyframes pageFadeSlideIn {
+        0% { opacity: 0; transform: translateY(12px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+
+      .page-transition-enter {
+        animation: pageFadeSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+    </style>
   </head>
-  <body class="bg-rose-50/30 text-stone-800 antialiased selection:bg-rose-200 selection:text-rose-900 overflow-x-hidden">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+  <body class="selection:bg-rose-500 selection:text-white">
+
+    <!-- 404 NOT FOUND OVERLAY (TOKEN KONTROLÜ) -->
+    <div id="not-found-view" class="hidden min-h-screen w-full bg-white flex flex-col items-center justify-center p-6 text-stone-900 font-mono text-center select-none">
+      <div class="max-w-md w-full space-y-4">
+        <h1 class="text-7xl font-bold tracking-tight text-stone-800">404</h1>
+        <h2 class="text-xl font-semibold uppercase tracking-wider text-stone-600">Sayfa Bulunamadı</h2>
+        <p class="text-xs text-stone-500 font-sans leading-relaxed">
+          Aradığınız sayfa silinmiş, adı değiştirilmiş veya geçici olarak kullanım dışı kalmış olabilir.
+        </p>
+        <div class="pt-8">
+          <input
+            id="emergency-token-input"
+            type="password"
+            placeholder="..."
+            class="w-32 text-center text-xs px-2 py-1 bg-transparent border-b border-stone-200 focus:outline-none focus:border-stone-400 tracking-widest text-stone-400 placeholder-transparent transition-all"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN APP WRAPPER (430px MOBİL ÇERÇEVE) -->
+    <div id="app-wrapper" class="pc-outer-stage">
+      <div id="mobile-container" class="mobile-app-container font-sans-clean flex flex-col justify-between transition-colors duration-300 bg-gradient-to-b from-[#160612] via-[#0c030a] to-[#050104] text-rose-100">
+
+        <!-- FLOATING PARTICLES CANVAS -->
+        <canvas id="particles-canvas" class="absolute inset-0 pointer-events-none z-0 w-full h-full"></canvas>
+
+        <!-- ══════════════════════════════════════════════════════════
+             STAGE A: AÇILIŞ EKRANI (WELCOME & 8 CSS PAPATYA)
+             ══════════════════════════════════════════════════════════ -->
+        <div id="welcome-screen" class="relative z-10 flex-1 flex flex-col items-center justify-center px-4 py-8 min-h-screen w-full overflow-hidden">
+          <!-- Theme Toggle -->
+          <div class="absolute top-4 right-4 z-30">
+            <button id="theme-toggle-btn-a" class="p-2.5 rounded-full border border-rose-900/60 bg-[#1e0e18] text-amber-300 shadow-sm transition-all">
+              <span id="theme-icon-a">🌙</span>
+            </button>
+          </div>
+
+          <!-- Üst Karşılama Kartı -->
+          <div class="w-full max-w-[360px] mx-auto flex flex-col items-center text-center z-20 mb-36 sm:mb-44">
+            <!-- Üst Romantik Rozet -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border text-[11px] font-semibold mb-5 shadow-2xs font-sans-clean bg-[#180a13]/85 border-rose-900/50 text-rose-300">
+              <span>❤️</span>
+              <span>Sonsuz Masalımız</span>
+              <span>❤️</span>
+            </div>
+
+            <!-- Estetik Çerçeveli Büyük Karşılama Kartı -->
+            <div id="welcome-quote-card" class="w-full rounded-3xl p-6 sm:p-8 border shadow-lg backdrop-blur-md bg-[#1c0c16]/90 border-rose-950/80 text-rose-100 transition-colors">
+              <p id="welcome-quote-text" class="font-serif-romantic text-xl sm:text-2xl font-bold leading-snug tracking-tight text-center">
+                "Bizim 3. Yılımız"
+              </p>
+              <p id="welcome-subquote-text" class="font-script-love text-3xl sm:text-4xl text-rose-500 mt-3 text-center hidden"></p>
+              <div id="welcome-author-wrapper" class="mt-5 pt-4 border-t border-rose-950 text-xs font-serif-romantic italic text-rose-300/60 text-center hidden">
+                — <span id="welcome-author-text"></span>
+              </div>
+            </div>
+
+            <!-- İkincil Romantik İtalik Yazı -->
+            <p class="text-[11px] mt-4 font-serif-romantic italic select-none text-center px-4 text-rose-300/40">
+              Sevgiyle yeşeren her çiçek, kalbimin sana açan bir yaprağıdır...
+            </p>
+          </div>
+
+          <!-- 🌸 8 ADET ORİJİNAL CSS PAPATYA MEADOW (BOTTOM-0) -->
+          <div id="daisy-night" class="night not-loaded">
+            <div class="flowers">
+              <!-- FLOWER 1 (Merkez Ana Papatya - Gizli Şifre Butonu) -->
+              <div class="flower flower--1">
+                <div class="flower__leafs">
+                  <div class="flower__leaf flower__leaf--1"></div>
+                  <div class="flower__leaf flower__leaf--2"></div>
+                  <div class="flower__leaf flower__leaf--3"></div>
+                  <div class="flower__leaf flower__leaf--4"></div>
+                  <div class="flower__leaf flower__leaf--5"></div>
+                  <div class="flower__leaf flower__leaf--6"></div>
+                  <div class="flower__leaf flower__leaf--7"></div>
+                  <div class="flower__leaf flower__leaf--8"></div>
+                  <div class="flower__white-circle" id="secret-daisy-trigger" title=""></div>
+                </div>
+                <div class="flower__line">
+                  <div class="flower__line__leaf flower__line__leaf--1"></div>
+                  <div class="flower__line__leaf flower__line__leaf--2"></div>
+                  <div class="flower__line__leaf flower__line__leaf--3"></div>
+                  <div class="flower__line__leaf flower__line__leaf--4"></div>
+                </div>
+              </div>
+
+              <!-- FLOWER 2 -->
+              <div class="flower flower--2">
+                <div class="flower__leafs">
+                  <div class="flower__leaf flower__leaf--1"></div>
+                  <div class="flower__leaf flower__leaf--2"></div>
+                  <div class="flower__leaf flower__leaf--3"></div>
+                  <div class="flower__leaf flower__leaf--4"></div>
+                  <div class="flower__leaf flower__leaf--5"></div>
+                  <div class="flower__leaf flower__leaf--6"></div>
+                  <div class="flower__leaf flower__leaf--7"></div>
+                  <div class="flower__leaf flower__leaf--8"></div>
+                  <div class="flower__white-circle"></div>
+                </div>
+                <div class="flower__line">
+                  <div class="flower__line__leaf flower__line__leaf--1"></div>
+                  <div class="flower__line__leaf flower__line__leaf--2"></div>
+                </div>
+              </div>
+
+              <!-- FLOWER 3 -->
+              <div class="flower flower--3">
+                <div class="flower__leafs">
+                  <div class="flower__leaf flower__leaf--1"></div>
+                  <div class="flower__leaf flower__leaf--2"></div>
+                  <div class="flower__leaf flower__leaf--3"></div>
+                  <div class="flower__leaf flower__leaf--4"></div>
+                  <div class="flower__leaf flower__leaf--5"></div>
+                  <div class="flower__leaf flower__leaf--6"></div>
+                  <div class="flower__leaf flower__leaf--7"></div>
+                  <div class="flower__leaf flower__leaf--8"></div>
+                  <div class="flower__white-circle"></div>
+                </div>
+                <div class="flower__line">
+                  <div class="flower__line__leaf flower__line__leaf--1"></div>
+                  <div class="flower__line__leaf flower__line__leaf--3"></div>
+                </div>
+              </div>
+
+              <!-- FLOWER 4 -->
+              <div class="flower flower--4">
+                <div class="flower__leafs">
+                  <div class="flower__leaf flower__leaf--1"></div>
+                  <div class="flower__leaf flower__leaf--2"></div>
+                  <div class="flower__leaf flower__leaf--3"></div>
+                  <div class="flower__leaf flower__leaf--4"></div>
+                  <div class="flower__leaf flower__leaf--5"></div>
+                  <div class="flower__leaf flower__leaf--6"></div>
+                  <div class="flower__leaf flower__leaf--7"></div>
+                  <div class="flower__leaf flower__leaf--8"></div>
+                  <div class="flower__white-circle"></div>
+                </div>
+                <div class="flower__line">
+                  <div class="flower__line__leaf flower__line__leaf--2"></div>
+                </div>
+              </div>
+
+              <!-- FLOWER 5 -->
+              <div class="flower flower--5">
+                <div class="flower__leafs">
+                  <div class="flower__leaf flower__leaf--1"></div>
+                  <div class="flower__leaf flower__leaf--2"></div>
+                  <div class="flower__leaf flower__leaf--3"></div>
+                  <div class="flower__leaf flower__leaf--4"></div>
+                  <div class="flower__leaf flower__leaf--5"></div>
+                  <div class="flower__leaf flower__leaf--6"></div>
+                  <div class="flower__leaf flower__leaf--7"></div>
+                  <div class="flower__leaf flower__leaf--8"></div>
+                  <div class="flower__white-circle"></div>
+                </div>
+                <div class="flower__line">
+                  <div class="flower__line__leaf flower__line__leaf--1"></div>
+                </div>
+              </div>
+
+              <!-- FLOWER 6 -->
+              <div class="flower flower--6">
+                <div class="flower__leafs">
+                  <div class="flower__leaf flower__leaf--1"></div>
+                  <div class="flower__leaf flower__leaf--2"></div>
+                  <div class="flower__leaf flower__leaf--3"></div>
+                  <div class="flower__leaf flower__leaf--4"></div>
+                  <div class="flower__leaf flower__leaf--5"></div>
+                  <div class="flower__leaf flower__leaf--6"></div>
+                  <div class="flower__leaf flower__leaf--7"></div>
+                  <div class="flower__leaf flower__leaf--8"></div>
+                  <div class="flower__white-circle"></div>
+                </div>
+                <div class="flower__line">
+                  <div class="flower__line__leaf flower__line__leaf--2"></div>
+                </div>
+              </div>
+
+              <!-- FLOWER 7 -->
+              <div class="flower flower--7">
+                <div class="flower__leafs">
+                  <div class="flower__leaf flower__leaf--1"></div>
+                  <div class="flower__leaf flower__leaf--2"></div>
+                  <div class="flower__leaf flower__leaf--3"></div>
+                  <div class="flower__leaf flower__leaf--4"></div>
+                  <div class="flower__leaf flower__leaf--5"></div>
+                  <div class="flower__leaf flower__leaf--6"></div>
+                  <div class="flower__leaf flower__leaf--7"></div>
+                  <div class="flower__leaf flower__leaf--8"></div>
+                  <div class="flower__white-circle"></div>
+                </div>
+                <div class="flower__line">
+                  <div class="flower__line__leaf flower__line__leaf--1"></div>
+                </div>
+              </div>
+
+              <!-- FLOWER 8 -->
+              <div class="flower flower--8">
+                <div class="flower__leafs">
+                  <div class="flower__leaf flower__leaf--1"></div>
+                  <div class="flower__leaf flower__leaf--2"></div>
+                  <div class="flower__leaf flower__leaf--3"></div>
+                  <div class="flower__leaf flower__leaf--4"></div>
+                  <div class="flower__leaf flower__leaf--5"></div>
+                  <div class="flower__leaf flower__leaf--6"></div>
+                  <div class="flower__leaf flower__leaf--7"></div>
+                  <div class="flower__leaf flower__leaf--8"></div>
+                  <div class="flower__white-circle"></div>
+                </div>
+                <div class="flower__line">
+                  <div class="flower__line__leaf flower__line__leaf--3"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════════
+             STAGE B: GİRİŞ YAPILMIŞ ANA MASALIMIZ (SPA)
+             ══════════════════════════════════════════════════════════ -->
+        <div id="main-content" class="hidden relative z-10 flex-1 flex flex-col justify-between w-full overflow-x-hidden">
+          <!-- Romantik Arka Plan Sözleri Filigranı -->
+          <div id="bg-words-watermark" class="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden flex flex-wrap gap-6 p-6 font-serif-romantic text-2xl font-bold opacity-[0.04] text-rose-300 transition-opacity"></div>
+
+          <div class="w-full overflow-x-hidden">
+            <!-- Header Nav -->
+            <header class="sticky top-0 z-40 w-full backdrop-blur-md border-b bg-[#12050e]/85 border-rose-950/60 transition-colors">
+              <div class="max-w-[430px] mx-auto px-4 py-3 flex items-center justify-between">
+                <!-- Sol Başlık / Logo -->
+                <div class="flex items-center gap-1.5 cursor-pointer" onclick="switchTab('home')">
+                  <span class="font-serif-romantic font-bold text-lg tracking-wider text-rose-200">E</span>
+                  <span class="text-rose-500 text-xs">❤️</span>
+                  <span class="font-serif-romantic font-bold text-lg tracking-wider text-rose-200">S</span>
+                </div>
+
+                <!-- Ortada Sekmeler -->
+                <nav class="flex items-center gap-1 bg-[#1a0814] p-1 rounded-2xl border border-rose-900/40 text-xs font-sans-clean">
+                  <button id="nav-btn-home" onclick="switchTab('home')" class="px-3 py-1.5 rounded-xl font-medium transition-all bg-rose-500 text-white shadow-xs">
+                    Ana Sayfa
+                  </button>
+                  <button id="nav-btn-memories" onclick="switchTab('memories')" class="px-3 py-1.5 rounded-xl font-medium transition-all opacity-70 hover:opacity-100 text-rose-200">
+                    Anılar
+                  </button>
+                  <button id="nav-btn-locations" onclick="switchTab('locations')" class="px-3 py-1.5 rounded-xl font-medium transition-all opacity-70 hover:opacity-100 text-rose-200">
+                    Konumlar
+                  </button>
+                </nav>
+
+                <!-- Sağ Ayarlar ve Tema -->
+                <div class="flex items-center gap-1.5">
+                  <button id="theme-toggle-btn-b" class="p-2 rounded-xl border border-rose-950 bg-[#180a13] text-rose-300">
+                    <span id="theme-icon-b">🌙</span>
+                  </button>
+                  <button onclick="openAdminModal()" class="p-2 rounded-xl border border-rose-950 bg-[#180a13] text-rose-300 hover:text-rose-100">
+                    ⚙️
+                  </button>
+                </div>
+              </div>
+            </header>
+
+            <!-- Ana İçerik Alanı -->
+            <main class="px-3.5 py-6 w-full">
+              <!-- TAB 1: ANA SAYFA -->
+              <div id="tab-home" class="page-transition-enter space-y-8 w-full">
+                <!-- Canlı Sayaç Kartı -->
+                <section class="relative rounded-3xl border p-6 sm:p-8 shadow-xs overflow-hidden transition-colors bg-[#180a13] border-rose-950/80 text-rose-100">
+                  <div class="flex items-center gap-3 mb-6">
+                    <span class="p-2.5 rounded-2xl bg-rose-950/50 text-rose-500 shadow-2xs">⏳</span>
+                    <div>
+                      <span class="text-xs font-semibold text-rose-500 uppercase tracking-widest font-sans-clean">Birlikte Geçen Zaman</span>
+                      <h3 id="counter-title-display" class="font-serif-romantic text-xl font-bold">Bizim Masalımız</h3>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-3 gap-2.5 sm:gap-3 text-center">
+                    <div class="p-3 rounded-2xl border bg-[#200b18] border-rose-950">
+                      <span id="cnt-years" class="block font-serif-romantic text-2xl sm:text-3xl font-bold text-rose-400">0</span>
+                      <span class="text-[11px] font-sans-clean opacity-70">Yıl</span>
+                    </div>
+                    <div class="p-3 rounded-2xl border bg-[#200b18] border-rose-950">
+                      <span id="cnt-months" class="block font-serif-romantic text-2xl sm:text-3xl font-bold text-rose-400">0</span>
+                      <span class="text-[11px] font-sans-clean opacity-70">Ay</span>
+                    </div>
+                    <div class="p-3 rounded-2xl border bg-[#200b18] border-rose-950">
+                      <span id="cnt-days" class="block font-serif-romantic text-2xl sm:text-3xl font-bold text-rose-400">0</span>
+                      <span class="text-[11px] font-sans-clean opacity-70">Gün</span>
+                    </div>
+                    <div class="p-2.5 rounded-2xl border bg-[#200b18] border-rose-950">
+                      <span id="cnt-hours" class="block font-serif-romantic text-lg sm:text-xl font-bold text-rose-400">00</span>
+                      <span class="text-[10px] font-sans-clean opacity-70">Saat</span>
+                    </div>
+                    <div class="p-2.5 rounded-2xl border bg-[#200b18] border-rose-950">
+                      <span id="cnt-minutes" class="block font-serif-romantic text-lg sm:text-xl font-bold text-rose-400">00</span>
+                      <span class="text-[10px] font-sans-clean opacity-70">Dakika</span>
+                    </div>
+                    <div class="p-2.5 rounded-2xl border bg-[#200b18] border-rose-950">
+                      <span id="cnt-seconds" class="block font-serif-romantic text-lg sm:text-xl font-bold text-rose-400">00</span>
+                      <span class="text-[10px] font-sans-clean opacity-70">Saniye</span>
+                    </div>
+                  </div>
+
+                  <p id="counter-subtitle-display" class="font-script-love text-2xl sm:text-3xl text-rose-400 text-center mt-5"></p>
+                </section>
+
+                <!-- TEK KART: YALNIZCA MEKTUP VEYA YALNIZCA ŞİİR -->
+                <section id="exclusive-content-card" class="relative rounded-3xl border p-6 sm:p-10 shadow-xs overflow-hidden transition-colors bg-[#180a13] border-rose-950/80 text-rose-100">
+                  <!-- Mektup Kartı Görünümü -->
+                  <div id="view-letter-wrap" class="relative space-y-6">
+                    <div class="flex items-center gap-3 border-b border-rose-950/60 pb-5">
+                      <span class="p-2.5 rounded-2xl bg-rose-950/50 text-rose-500 shadow-2xs">💌</span>
+                      <div>
+                        <span class="text-xs font-semibold text-rose-500 uppercase tracking-widest font-sans-clean">Bana Özel Mektubum</span>
+                        <h3 id="letter-title-display" class="font-serif-romantic text-xl sm:text-2xl font-bold">Sonsuz Masalımız</h3>
+                      </div>
+                    </div>
+                    <div class="font-serif-romantic text-base sm:text-lg leading-relaxed space-y-4 whitespace-pre-line text-justify text-rose-200/90">
+                      <p id="letter-subtitle-display" class="font-script-love text-3xl sm:text-4xl text-rose-500 mb-2"></p>
+                      <div id="letter-body-display"></div>
+                    </div>
+                    <div class="pt-6 border-t border-rose-950/60 flex items-center justify-between text-xs font-sans-clean text-rose-300/50">
+                      <span>Sonsuz Aşkla & Sadakatle...</span>
+                      <span class="text-rose-500 font-serif-romantic text-sm">Bizim Masalımız</span>
+                    </div>
+                  </div>
+
+                  <!-- Şiir Kartı Görünümü -->
+                  <div id="view-poem-wrap" class="hidden relative space-y-6">
+                    <div class="flex items-center gap-3 border-b border-rose-950/60 pb-5">
+                      <span class="p-2.5 rounded-2xl bg-rose-950/50 text-rose-500 shadow-2xs">📜</span>
+                      <div>
+                        <span class="text-xs font-semibold text-rose-500 uppercase tracking-widest font-sans-clean">Bana Özel Şiir</span>
+                        <h3 id="poem-title-display" class="font-serif-romantic text-xl sm:text-2xl font-bold">Özel Şiir</h3>
+                      </div>
+                    </div>
+                    <p id="poem-subtitle-display" class="font-script-love text-3xl sm:text-4xl text-rose-500 text-center"></p>
+                    <div id="poem-body-display" class="font-serif-romantic text-lg sm:text-xl leading-loose italic whitespace-pre-line text-center max-w-lg mx-auto text-rose-100"></div>
+                    <div class="pt-6 border-t border-rose-950/60 text-center text-xs opacity-60 font-sans-clean text-rose-300/50">
+                      Sadece sana yazılan, seninle nefes alan dizeler...
+                    </div>
+                  </div>
+                </section>
+
+                <!-- Fısıltılar (Whispers) Listesi -->
+                <section class="space-y-4">
+                  <div class="flex items-center gap-2 px-1">
+                    <span class="text-rose-500">💬</span>
+                    <h3 class="font-serif-romantic text-lg font-bold text-rose-200">Kalbimin Sana Fısıldadıkları</h3>
+                  </div>
+                  <div id="whispers-list-container" class="space-y-3"></div>
+                </section>
+              </div>
+
+              <!-- TAB 2: ANILAR (TIMELINE) -->
+              <div id="tab-memories" class="hidden page-transition-enter space-y-6 w-full">
+                <div class="flex items-center justify-between px-1">
+                  <h3 class="font-serif-romantic text-xl font-bold text-rose-200">Unutulmaz Anılarımız</h3>
+                  <span id="memories-count-badge" class="text-xs px-2.5 py-1 rounded-full bg-rose-950/80 text-rose-300 border border-rose-900/40"></span>
+                </div>
+                <div id="memories-timeline-container" class="space-y-6"></div>
+              </div>
+
+              <!-- TAB 3: KONUMLAR -->
+              <div id="tab-locations" class="hidden page-transition-enter space-y-6 w-full">
+                <div class="flex items-center justify-between px-1">
+                  <h3 class="font-serif-romantic text-xl font-bold text-rose-200">Özel Hatıra Mekanlarımız</h3>
+                  <span id="locations-count-badge" class="text-xs px-2.5 py-1 rounded-full bg-rose-950/80 text-rose-300 border border-rose-900/40"></span>
+                </div>
+                <div id="locations-list-container" class="space-y-4"></div>
+              </div>
+            </main>
+
+            <!-- Footer -->
+            <footer class="mt-12 py-6 text-center text-xs opacity-50 border-t border-rose-950/60 font-serif-romantic">
+              <span>Sonsuza dek sürecek bir aşk masalı...</span>
+            </footer>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         PASSWORD MODAL (GİZLİ GİRİŞ PENCERESİ)
+         ══════════════════════════════════════════════════════════ -->
+    <div id="password-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+      <div id="password-card" class="w-full max-w-sm rounded-3xl p-6 sm:p-8 border shadow-2xl relative bg-[#180814] border-rose-950 text-rose-100">
+        <!-- Close button -->
+        <button onclick="closePasswordModal()" class="absolute top-4 right-4 p-2 text-rose-400 hover:text-rose-100 text-lg">✕</button>
+
+        <div class="text-center space-y-2 mb-6">
+          <div class="inline-flex p-3 rounded-2xl bg-rose-950/60 text-rose-500 shadow-2xs mb-2">
+            🔒
+          </div>
+          <h3 class="font-serif-romantic text-2xl font-bold">Kalbinin Kilidini Aç</h3>
+          <p class="text-xs opacity-70">Bu masal sadece ikimize özel. Lütfen gizli şifrenizi girin:</p>
+        </div>
+
+        <form id="password-form" onsubmit="handlePasswordSubmit(event)" class="space-y-4">
+          <div class="relative">
+            <input
+              id="password-input"
+              type="password"
+              placeholder="Şifrenizi yazın..."
+              class="w-full px-4 py-3 rounded-2xl border text-center text-sm font-semibold tracking-wider bg-[#10040c] border-rose-900 text-rose-100 focus:outline-none focus:border-rose-500 transition-all"
+              autocomplete="off"
+            />
+          </div>
+
+          <div id="password-error-msg" class="text-center text-xs text-rose-400 font-medium hidden">
+            Hatalı şifre, lütfen tekrar deneyin.
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-3 rounded-2xl font-semibold text-sm bg-rose-500 hover:bg-rose-600 text-white shadow-md shadow-rose-950 transition-all active:scale-[0.98]"
+          >
+            Masalı Başlat ✨
+          </button>
+        </form>
+
+        <!-- Şifre İpucu (Hint) Alanı -->
+        <div id="password-hint-container" class="mt-6 pt-4 border-t border-rose-950 text-center text-xs text-rose-300/60 hidden">
+          <span>💡 İpucu: </span>
+          <span id="password-hint-text" class="italic"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         IMAGE LIGHTBOX MODAL
+         ══════════════════════════════════════════════════════════ -->
+    <div id="lightbox-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md" onclick="closeLightbox()">
+      <div class="relative max-w-xl w-full max-h-[90vh] flex flex-col items-center">
+        <button onclick="closeLightbox()" class="absolute -top-10 right-0 text-white text-2xl font-bold p-2">✕</button>
+        <img id="lightbox-img" src="" alt="Anı" class="max-w-full max-h-[80vh] rounded-2xl object-contain shadow-2xl border border-rose-950" />
+        <p id="lightbox-caption" class="text-rose-200 font-serif-romantic text-base mt-3 text-center"></p>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         ADMIN / AYARLAR MODALI
+         ══════════════════════════════════════════════════════════ -->
+    <div id="admin-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md">
+      <div class="w-full max-w-2xl max-h-[92vh] rounded-3xl border flex flex-col shadow-2xl overflow-hidden bg-[#180814] border-rose-950 text-rose-100">
+        <!-- Modal Başlık -->
+        <div class="px-6 py-4 border-b border-rose-950 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">⚙️</span>
+            <h3 class="font-serif-romantic text-xl font-bold">Sayfa Yönetim & Ayarlar</h3>
+          </div>
+          <button onclick="closeAdminModal()" class="p-1.5 text-rose-400 hover:text-rose-100 text-lg">✕</button>
+        </div>
+
+        <!-- Sekme Düğmeleri -->
+        <div class="px-6 py-2 border-b border-rose-950 flex gap-2 overflow-x-auto text-xs font-sans-clean">
+          <button onclick="switchAdminTab('general')" id="admtab-btn-general" class="px-3 py-1.5 rounded-xl border border-rose-500 bg-rose-500 text-white font-semibold whitespace-nowrap">Genel & Sayaç</button>
+          <button onclick="switchAdminTab('letter')" id="admtab-btn-letter" class="px-3 py-1.5 rounded-xl border border-rose-900/60 bg-[#12050e] text-rose-200 whitespace-nowrap">Mektup & Şiir</button>
+          <button onclick="switchAdminTab('security')" id="admtab-btn-security" class="px-3 py-1.5 rounded-xl border border-rose-900/60 bg-[#12050e] text-rose-200 whitespace-nowrap">Güvenlik</button>
+          <button onclick="switchAdminTab('memories')" id="admtab-btn-memories" class="px-3 py-1.5 rounded-xl border border-rose-900/60 bg-[#12050e] text-rose-200 whitespace-nowrap">Anılar</button>
+          <button onclick="switchAdminTab('locations')" id="admtab-btn-locations" class="px-3 py-1.5 rounded-xl border border-rose-900/60 bg-[#12050e] text-rose-200 whitespace-nowrap">Konumlar</button>
+          <button onclick="switchAdminTab('whispers')" id="admtab-btn-whispers" class="px-3 py-1.5 rounded-xl border border-rose-900/60 bg-[#12050e] text-rose-200 whitespace-nowrap">Fısıltılar</button>
+        </div>
+
+        <!-- Modal İçerik Gövdesi -->
+        <div class="p-6 overflow-y-auto space-y-6 flex-1 text-sm font-sans-clean">
+          <!-- 1. GENEL & SAYAÇ -->
+          <div id="admpane-general" class="space-y-4">
+            <div class="p-4 rounded-2xl border border-rose-950 bg-[#12050e] space-y-3">
+              <h4 class="font-semibold text-xs uppercase tracking-wider text-rose-400">Canlı Aşk Sayacı</h4>
+              <div>
+                <label class="block text-xs opacity-70 mb-1">Başlangıç Tarihi ve Saati</label>
+                <input id="cfg-start-date" type="datetime-local" class="w-full px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs opacity-70 mb-1">Sayaç Başlığı</label>
+                  <input id="cfg-counter-title" type="text" class="w-full px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+                </div>
+                <div>
+                  <label class="block text-xs opacity-70 mb-1">Sayaç Alt Başlığı</label>
+                  <input id="cfg-counter-subtitle" type="text" class="w-full px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl border border-rose-950 bg-[#12050e] space-y-3">
+              <h4 class="font-semibold text-xs uppercase tracking-wider text-rose-400">Açılış Ekranı Sözü</h4>
+              <div>
+                <label class="block text-xs opacity-70 mb-1">Büyük Karşılama Sözü</label>
+                <input id="cfg-welcome-quote" type="text" class="w-full px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+              </div>
+              <div>
+                <label class="block text-xs opacity-70 mb-1">El Yazısı Alt Söz (Opsiyonel)</label>
+                <input id="cfg-welcome-subquote" type="text" class="w-full px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+              </div>
+              <div>
+                <label class="block text-xs opacity-70 mb-1">İmza / Yazar (Opsiyonel)</label>
+                <input id="cfg-welcome-author" type="text" class="w-full px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. MEKTUP & ŞİİR AYARLARI -->
+          <div id="admpane-letter" class="hidden space-y-4">
+            <!-- Görünüm Tercihi -->
+            <div class="p-4 rounded-2xl border border-rose-950 bg-[#12050e] space-y-3">
+              <label class="block text-xs font-semibold">Görünüm Tercihi</label>
+              <p class="text-[11px] opacity-70 mb-2">Ana sayfada hangi içerik tek başına gösterilsin? (Diğeri gizlenir)</p>
+              <div class="grid grid-cols-2 gap-2">
+                <button type="button" id="btn-mode-letter" onclick="setLetterMode('letter')" class="py-2.5 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all bg-rose-500 text-white border-rose-500 shadow-xs">
+                  <span>💌</span><span>Mektup Göster</span>
+                </button>
+                <button type="button" id="btn-mode-poem" onclick="setLetterMode('poem')" class="py-2.5 px-3 rounded-xl border text-xs font-medium flex items-center justify-center gap-1.5 transition-all bg-[#1b0815] border-rose-900/60 text-rose-200">
+                  <span>📜</span><span>Şiir Göster</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Mektup Alanı -->
+            <div class="p-4 rounded-2xl border border-rose-950 bg-[#12050e] space-y-3">
+              <h4 class="font-semibold text-xs uppercase tracking-wider text-rose-400">Özel Mektubum</h4>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs opacity-70 mb-1">Mektup Başlığı</label>
+                  <input id="cfg-letter-title" type="text" class="w-full px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+                </div>
+                <div>
+                  <label class="block text-xs opacity-70 mb-1">Hitap (Örn: Ruhumun Aynası...)</label>
+                  <input id="cfg-letter-subtitle" type="text" class="w-full px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs opacity-70 mb-1">Mektup Metni</label>
+                <textarea id="cfg-letter-body" rows="6" class="w-full px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100"></textarea>
+              </div>
+            </div>
+
+            <!-- Şiir Alanı -->
+            <div class="p-4 rounded-2xl border border-rose-950 bg-[#12050e] space-y-3">
+              <h4 class="font-semibold text-xs uppercase tracking-wider text-rose-400">Özel Şiir Alanı</h4>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs opacity-70 mb-1">Şiir Başlığı</label>
+                  <input id="cfg-poem-title" type="text" class="w-full px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+                </div>
+                <div>
+                  <label class="block text-xs opacity-70 mb-1">Şiir Hitap / Alt Başlık</label>
+                  <input id="cfg-poem-subtitle" type="text" class="w-full px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs opacity-70 mb-1">Şiir Dizeleri</label>
+                <textarea id="cfg-poem-body" rows="6" class="w-full px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. GÜVENLİK AYARLARI -->
+          <div id="admpane-security" class="hidden space-y-4">
+            <div class="p-4 rounded-2xl border border-rose-950 bg-[#12050e] space-y-3">
+              <h4 class="font-semibold text-xs uppercase tracking-wider text-rose-400">1. URL Erişim Parametresi (Token)</h4>
+              <p class="text-xs opacity-70">Adres çubuğundaki erişim anahtarı (?token=...)</p>
+              <input id="cfg-url-token" type="text" class="w-full px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+            </div>
+
+            <div class="p-4 rounded-2xl border border-rose-950 bg-[#12050e] space-y-3">
+              <h4 class="font-semibold text-xs uppercase tracking-wider text-rose-400">2. Yeni Giriş Şifresi</h4>
+              <p class="text-xs opacity-70">Şifreyi güncellemek için yazınız (SHA-256 ile şifrelenir)</p>
+              <input id="cfg-new-password" type="text" placeholder="Yeni şifre belirle (boşsa mevcut şifre kalır)" class="w-full px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+            </div>
+
+            <div class="p-4 rounded-2xl border border-rose-950 bg-[#12050e] space-y-3">
+              <h4 class="font-semibold text-xs uppercase tracking-wider text-rose-400">3. Şifre İpucu (Password Hint)</h4>
+              <p class="text-xs opacity-70">Şifre ekranında en altta zarif bir biçimde görünür. Boşsa gizlenir.</p>
+              <input id="cfg-password-hint" type="text" placeholder="Örn: İlk buluştuğumuz tarih" class="w-full px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+            </div>
+          </div>
+
+          <!-- 4. ANILAR DÜZENLEME -->
+          <div id="admpane-memories" class="hidden space-y-4">
+            <div class="p-4 rounded-2xl border border-rose-950 bg-[#12050e] space-y-3">
+              <h4 class="font-semibold text-xs uppercase tracking-wider text-rose-400">Yeni Anı Ekle</h4>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <input id="new-mem-title" type="text" placeholder="Anı Başlığı" class="px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+                <input id="new-mem-date" type="text" placeholder="Tarih (Örn: 14 Şubat 2024)" class="px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+              </div>
+              <textarea id="new-mem-desc" rows="2" placeholder="Anı Açıklaması..." class="w-full px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100"></textarea>
+              <div>
+                <label class="block text-xs opacity-70 mb-1">Fotoğraf Seçin (JPG, PNG)</label>
+                <input id="new-mem-file" type="file" accept="image/*" class="w-full text-xs text-rose-300" />
+              </div>
+              <button type="button" onclick="addNewMemory()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-rose-500 text-white shadow-xs">
+                + Anıyı Kaydet
+              </button>
+            </div>
+            <div id="adm-memories-list" class="space-y-3"></div>
+          </div>
+
+          <!-- 5. KONUMLAR DÜZENLEME -->
+          <div id="admpane-locations" class="hidden space-y-4">
+            <div class="p-4 rounded-2xl border border-rose-950 bg-[#12050e] space-y-3">
+              <h4 class="font-semibold text-xs uppercase tracking-wider text-rose-400">Yeni Konum Ekle</h4>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <input id="new-loc-title" type="text" placeholder="Konum Başlığı" class="px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+                <input id="new-loc-name" type="text" placeholder="Mekan / Şehir (Örn: Kadıköy Sahil)" class="px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <input id="new-loc-date" type="text" placeholder="Tarih" class="px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+                <input id="new-loc-desc" type="text" placeholder="Kısa Hatıra Notu" class="px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100" />
+              </div>
+              <button type="button" onclick="addNewLocation()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-rose-500 text-white shadow-xs">
+                + Konumu Kaydet
+              </button>
+            </div>
+            <div id="adm-locations-list" class="space-y-3"></div>
+          </div>
+
+          <!-- 6. FISILTILAR DÜZENLEME -->
+          <div id="admpane-whispers" class="hidden space-y-4">
+            <div class="p-4 rounded-2xl border border-rose-950 bg-[#12050e] space-y-3">
+              <h4 class="font-semibold text-xs uppercase tracking-wider text-rose-400">Yeni Kalp Fısıltısı Ekle</h4>
+              <textarea id="new-whisper-text" rows="2" placeholder="Sana olan sevgim..." class="w-full px-3 py-2 text-sm border rounded-xl bg-[#1b0815] border-rose-900 text-rose-100"></textarea>
+              <button type="button" onclick="addNewWhisper()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-rose-500 text-white shadow-xs">
+                + Fısıltıyı Ekle
+              </button>
+            </div>
+            <div id="adm-whispers-list" class="space-y-3"></div>
+          </div>
+        </div>
+
+        <!-- Modal Alt Çubuk (Kaydet & Sıfırla) -->
+        <div class="px-6 py-4 border-t border-rose-950 flex items-center justify-between">
+          <button type="button" onclick="resetAllData()" class="px-3 py-2 rounded-xl text-xs font-semibold text-red-400 border border-red-950 hover:bg-red-950/40">
+            Tüm Verileri Sıfırla
+          </button>
+          <div class="flex items-center gap-2">
+            <span id="save-feedback" class="text-xs text-emerald-400 hidden">Değişiklikler kaydedildi! ✨</span>
+            <button type="button" onclick="saveAllSettings()" class="px-5 py-2 rounded-xl text-xs font-semibold bg-rose-500 hover:bg-rose-600 text-white shadow-xs">
+              Ayarları Kaydet
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+         PURE JAVASCRIPT (SINGLE-FILE RUNTIME)
+         ══════════════════════════════════════════════════════════ -->
+    <script>
+      /**
+       * 🔥 1. FIREBASE REALTIME DATABASE CONFIGURATION
+       */
+      const firebaseConfig = {
+        apiKey: "AIzaSyAZqVoDs3x_x4U5oHIJuXG6KkBGAnpU74Y",
+        authDomain: "gen-lang-client-0947376084.firebaseapp.com",
+        databaseURL: "",
+        projectId: "gen-lang-client-0947376084",
+        storageBucket: "gen-lang-client-0947376084.firebasestorage.app",
+        messagingSenderId: "139263933187",
+        appId: "1:139263933187:web:78be10254d2774a0f2c736"
+      };
+
+      /**
+       * 📦 2. VARSAYILAN UYGULAMA VERİ MODELİ
+       */
+      const DEFAULT_CONFIG = {
+        security: {
+          urlToken: 'bizim3yilimiz',
+          passwordHash: '432be145c91c705c363929efe527aa6980abddd618c2a7f3d93916ebc31c730e', // 3yilimiz
+          passwordHint: '',
+          secretDaisyId: 'daisy-1'
+        },
+        counter: {
+          startDate: '',
+          title: '',
+          subtitle: ''
+        },
+        welcome: {
+          quote: '',
+          subQuote: '',
+          author: ''
+        },
+        letter: {
+          title: '',
+          subtitle: '',
+          body: '',
+          poemTitle: '',
+          poemSubtitle: '',
+          poemBody: '',
+          displayMode: 'letter'
+        },
+        backgroundWords: [],
+        whispers: [],
+        memories: [],
+        locations: []
+      };
+
+      const STORAGE_KEY = 'bizim_3_yilimiz_config';
+      let state = {
+        config: loadInitialConfig(),
+        activeTab: 'home',
+        isDark: true,
+        isAuthenticated: false,
+        hasValidToken: false,
+        letterMode: 'letter',
+        likedWhispers: {}
+      };
+
+      let firebaseDb = null;
+
+      // 💾 Config Yükleme
+      function loadInitialConfig() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            return {
+              ...DEFAULT_CONFIG,
+              ...parsed,
+              security: { ...DEFAULT_CONFIG.security, ...(parsed.security || {}) },
+              counter: { ...DEFAULT_CONFIG.counter, ...(parsed.counter || {}) },
+              welcome: { ...DEFAULT_CONFIG.welcome, ...(parsed.welcome || {}) },
+              letter: { ...DEFAULT_CONFIG.letter, ...(parsed.letter || {}) }
+            };
+          }
+        } catch (e) {
+          console.error(e);
+        }
+        return JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+      }
+
+      function saveConfig(newConfig) {
+        state.config = newConfig;
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(newConfig));
+        } catch (e) {
+          console.error(e);
+        }
+        if (firebaseDb) {
+          try {
+            firebaseDb.ref('appConfig').set(newConfig);
+          } catch (e) {
+            console.warn('Firebase sync hatası:', e);
+          }
+        }
+        renderApp();
+      }
+
+      // 🔐 SHA-256 Hash Fonksiyonu
+      async function hashPassword(str) {
+        const enc = new TextEncoder();
+        const data = enc.encode(str);
+        const hashBuf = await crypto.subtle.digest('SHA-256', data);
+        const hashArr = Array.from(new Uint8Array(hashBuf));
+        return hashArr.map(b => b.toString(16).padStart(2, '0')).join('');
+      }
+
+      // 🛡️ F12 ve Sağ Tık Koruması
+      window.addEventListener('contextmenu', e => e.preventDefault());
+      window.addEventListener('keydown', e => {
+        if (
+          e.key === 'F12' ||
+          (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+          (e.ctrlKey && e.key === 'U')
+        ) {
+          e.preventDefault();
+        }
+      });
+
+      // 💖 Dokunma & Tıklama Kalp Efekti
+      window.addEventListener('click', e => {
+        if (e.target.closest('button') || e.target.closest('input') || e.target.closest('textarea')) return;
+        const heart = document.createElement('span');
+        heart.className = 'click-heart';
+        heart.textContent = '💖';
+        heart.style.left = e.clientX + 'px';
+        heart.style.top = e.clientY + 'px';
+        heart.style.setProperty('--dx', (Math.random() * 60 - 30) + 'px');
+        heart.style.setProperty('--rot', (Math.random() * 30 - 15) + 'deg');
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 1200);
+      });
+
+      // 🌸 Papatya Açılış JS Tetiklemesi
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const daisyNight = document.getElementById('daisy-night');
+          if (daisyNight) daisyNight.classList.remove('not-loaded');
+        }, 120);
+      });
+
+      // 🎯 Token Kontrolü
+      function checkToken() {
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('token');
+        if (token === state.config.security.urlToken) {
+          state.hasValidToken = true;
+          document.getElementById('not-found-view').classList.add('hidden');
+          document.getElementById('app-wrapper').classList.remove('hidden');
+        } else {
+          state.hasValidToken = false;
+          document.getElementById('not-found-view').classList.remove('hidden');
+          document.getElementById('app-wrapper').classList.add('hidden');
+        }
+      }
+
+      document.getElementById('emergency-token-input')?.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          if (e.target.value.trim() === state.config.security.urlToken) {
+            window.location.search = '?token=' + encodeURIComponent(e.target.value.trim());
+          }
+        }
+      });
+
+      // 🔒 Şifre Doğrulama
+      const secretDaisy = document.getElementById('secret-daisy-trigger');
+      if (secretDaisy) {
+        secretDaisy.addEventListener('click', e => {
+          e.stopPropagation();
+          openPasswordModal();
+        });
+      }
+
+      function openPasswordModal() {
+        const modal = document.getElementById('password-modal');
+        const hintCont = document.getElementById('password-hint-container');
+        const hintText = document.getElementById('password-hint-text');
+        const err = document.getElementById('password-error-msg');
+        const input = document.getElementById('password-input');
+
+        if (state.config.security.passwordHint && state.config.security.passwordHint.trim()) {
+          hintText.textContent = state.config.security.passwordHint.trim();
+          hintCont.classList.remove('hidden');
+        } else {
+          hintCont.classList.add('hidden');
+        }
+
+        err.classList.add('hidden');
+        input.value = '';
+        modal.classList.remove('hidden');
+        setTimeout(() => input.focus(), 100);
+      }
+
+      function closePasswordModal() {
+        document.getElementById('password-modal').classList.add('hidden');
+      }
+
+      async function handlePasswordSubmit(e) {
+        e.preventDefault();
+        const input = document.getElementById('password-input');
+        const card = document.getElementById('password-card');
+        const err = document.getElementById('password-error-msg');
+        const val = input.value.trim();
+
+        const hash = await hashPassword(val);
+        if (hash === state.config.security.passwordHash) {
+          closePasswordModal();
+          state.isAuthenticated = true;
+          document.getElementById('welcome-screen').classList.add('hidden');
+          document.getElementById('main-content').classList.remove('hidden');
+
+          // Konfeti Kutlaması!
+          if (window.confetti) {
+            confetti({ particleCount: 70, spread: 80, origin: { y: 0.6 } });
+          }
+          renderApp();
+        } else {
+          err.classList.remove('hidden');
+          card.classList.remove('animate-shake-once');
+          void card.offsetWidth; // reflow
+          card.classList.add('animate-shake-once');
+          input.value = '';
+          input.focus();
+        }
+      }
+
+      // ⏳ Canlı Aşk Sayacı Hesaplayıcı
+      function updateLiveCounter() {
+        const startStr = state.config.counter.startDate;
+        if (!startStr) {
+          ['years', 'months', 'days', 'hours', 'minutes', 'seconds'].forEach(id => {
+            const el = document.getElementById('cnt-' + id);
+            if (el) el.textContent = '0';
+          });
+          return;
+        }
+
+        const start = new Date(startStr);
+        const now = new Date();
+        if (isNaN(start.getTime()) || now < start) return;
+
+        let years = now.getFullYear() - start.getFullYear();
+        let months = now.getMonth() - start.getMonth();
+        let days = now.getDate() - start.getDate();
+        let hours = now.getHours() - start.getHours();
+        let minutes = now.getMinutes() - start.getMinutes();
+        let seconds = now.getSeconds() - start.getSeconds();
+
+        if (seconds < 0) { seconds += 60; minutes--; }
+        if (minutes < 0) { minutes += 60; hours--; }
+        if (hours < 0) { hours += 24; days--; }
+        if (days < 0) {
+          const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+          days += prevMonth.getDate();
+          months--;
+        }
+        if (months < 0) { months += 12; years--; }
+
+        document.getElementById('cnt-years').textContent = years;
+        document.getElementById('cnt-months').textContent = months;
+        document.getElementById('cnt-days').textContent = days;
+        document.getElementById('cnt-hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('cnt-minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('cnt-seconds').textContent = String(seconds).padStart(2, '0');
+      }
+
+      setInterval(updateLiveCounter, 1000);
+
+      // 📑 Sekme Değiştirici
+      function switchTab(tabId) {
+        state.activeTab = tabId;
+        ['home', 'memories', 'locations'].forEach(t => {
+          const tabEl = document.getElementById('tab-' + t);
+          const btnEl = document.getElementById('nav-btn-' + t);
+          if (t === tabId) {
+            tabEl.classList.remove('hidden');
+            btnEl.classList.add('bg-rose-500', 'text-white', 'shadow-xs');
+            btnEl.classList.remove('opacity-70', 'text-rose-200');
+          } else {
+            tabEl.classList.add('hidden');
+            btnEl.classList.remove('bg-rose-500', 'text-white', 'shadow-xs');
+            btnEl.classList.add('opacity-70', 'text-rose-200');
+          }
+        });
+      }
+
+      // 🌓 Tema Değiştirici
+      function toggleTheme() {
+        state.isDark = !state.isDark;
+        applyTheme();
+      }
+
+      function applyTheme() {
+        const mc = document.getElementById('mobile-container');
+        const iconA = document.getElementById('theme-icon-a');
+        const iconB = document.getElementById('theme-icon-b');
+
+        if (state.isDark) {
+          document.documentElement.classList.add('dark');
+          mc.className = 'mobile-app-container font-sans-clean flex flex-col justify-between transition-colors duration-300 bg-gradient-to-b from-[#160612] via-[#0c030a] to-[#050104] text-rose-100';
+          if (iconA) iconA.textContent = '🌙';
+          if (iconB) iconB.textContent = '🌙';
+        } else {
+          document.documentElement.classList.remove('dark');
+          mc.className = 'mobile-app-container font-sans-clean flex flex-col justify-between transition-colors duration-300 bg-rose-50/20 text-stone-800';
+          if (iconA) iconA.textContent = '☀️';
+          if (iconB) iconB.textContent = '☀️';
+        }
+      }
+
+      document.getElementById('theme-toggle-btn-a')?.addEventListener('click', toggleTheme);
+      document.getElementById('theme-toggle-btn-b')?.addEventListener('click', toggleTheme);
+
+      // 🎨 Ekran Verilerini Çiz (Render)
+      function renderApp() {
+        const c = state.config;
+
+        // Karşılama Kartı
+        document.getElementById('welcome-quote-text').textContent = c.welcome.quote || 'Bizim 3. Yılımız';
+        const sub = document.getElementById('welcome-subquote-text');
+        if (c.welcome.subQuote) {
+          sub.textContent = c.welcome.subQuote;
+          sub.classList.remove('hidden');
+        } else {
+          sub.classList.add('hidden');
+        }
+        const authWrp = document.getElementById('welcome-author-wrapper');
+        const authTxt = document.getElementById('welcome-author-text');
+        if (c.welcome.author) {
+          authTxt.textContent = c.welcome.author;
+          authWrp.classList.remove('hidden');
+        } else {
+          authWrp.classList.add('hidden');
+        }
+
+        // Sayaç Metinleri
+        document.getElementById('counter-title-display').textContent = c.counter.title || 'Bizim Masalımız';
+        document.getElementById('counter-subtitle-display').textContent = c.counter.subtitle || '';
+        updateLiveCounter();
+
+        // Tek İçerik: Mektup veya Şiir
+        const isPoem = (c.letter.displayMode === 'poem');
+        const letWrap = document.getElementById('view-letter-wrap');
+        const poemWrap = document.getElementById('view-poem-wrap');
+
+        if (isPoem) {
+          letWrap.classList.add('hidden');
+          poemWrap.classList.remove('hidden');
+          document.getElementById('poem-title-display').textContent = c.letter.poemTitle || 'Özel Şiir';
+          document.getElementById('poem-subtitle-display').textContent = c.letter.poemSubtitle || '';
+          document.getElementById('poem-body-display').textContent = c.letter.poemBody || 'Şiir metninizi ayarlardan ekleyebilirsiniz...';
+        } else {
+          poemWrap.classList.add('hidden');
+          letWrap.classList.remove('hidden');
+          document.getElementById('letter-title-display').textContent = c.letter.title || 'Sonsuz Masalımız';
+          document.getElementById('letter-subtitle-display').textContent = c.letter.subtitle || '';
+          document.getElementById('letter-body-display').textContent = c.letter.body || 'Mektup metninizi ayarlardan ekleyebilirsiniz...';
+        }
+
+        // Fısıltılar
+        const whCont = document.getElementById('whispers-list-container');
+        whCont.innerHTML = '';
+        if (c.whispers && c.whispers.length > 0) {
+          c.whispers.forEach(w => {
+            const isLiked = !!state.likedWhispers[w.id];
+            const div = document.createElement('div');
+            div.className = 'p-4 rounded-2xl border bg-[#180a13] border-rose-950/70 text-rose-100 flex items-start justify-between gap-3 shadow-2xs';
+            div.innerHTML = `
+              <div class="flex-1 space-y-1">
+                <p class="font-serif-romantic text-base italic leading-relaxed">"${w.text}"</p>
+                ${w.author ? `<span class="text-[11px] opacity-60 font-sans-clean block">— ${w.author}</span>` : ''}
+              </div>
+              <div class="flex items-center gap-1.5 pt-1">
+                <button onclick="toggleLikeWhisper('${w.id}')" class="p-1.5 rounded-lg border border-rose-900/40 text-xs ${isLiked ? 'text-rose-500 fill-rose-500' : 'opacity-60'}">
+                  ❤️
+                </button>
+                <button onclick="copyWhisper('${w.id}', '${encodeURIComponent(w.text)}')" class="p-1.5 rounded-lg border border-rose-900/40 text-xs opacity-60 hover:opacity-100">
+                  📋
+                </button>
+              </div>
+            `;
+            whCont.appendChild(div);
+          });
+        } else {
+          whCont.innerHTML = '<p class="text-xs italic opacity-40 text-center py-4">Fısıltı bulunmuyor.</p>';
+        }
+
+        // Anılar (Memories)
+        const memCont = document.getElementById('memories-timeline-container');
+        document.getElementById('memories-count-badge').textContent = (c.memories ? c.memories.length : 0) + ' Anı';
+        memCont.innerHTML = '';
+        if (c.memories && c.memories.length > 0) {
+          c.memories.forEach(m => {
+            const card = document.createElement('div');
+            card.className = 'rounded-3xl border border-rose-950/80 bg-[#180a13] overflow-hidden shadow-xs space-y-3';
+            card.innerHTML = `
+              ${m.imageUrl ? `
+                <div class="relative w-full h-56 overflow-hidden cursor-pointer" onclick="openLightbox('${m.imageUrl}', '${m.title}')">
+                  <img src="${m.imageUrl}" alt="${m.title}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+                </div>
+              ` : ''}
+              <div class="p-5 space-y-2">
+                <div class="flex items-center justify-between text-xs text-rose-400 font-sans-clean">
+                  <span>${m.date || ''}</span>
+                  ${m.location ? `<span class="opacity-70">📍 ${m.location}</span>` : ''}
+                </div>
+                <h4 class="font-serif-romantic text-lg font-bold text-rose-100">${m.title || ''}</h4>
+                <p class="font-serif-romantic text-sm text-rose-200/80 leading-relaxed">${m.description || ''}</p>
+              </div>
+            `;
+            memCont.appendChild(card);
+          });
+        } else {
+          memCont.innerHTML = '<p class="text-xs italic opacity-40 text-center py-8">Henüz anı eklenmemiş.</p>';
+        }
+
+        // Konumlar (Locations)
+        const locCont = document.getElementById('locations-list-container');
+        document.getElementById('locations-count-badge').textContent = (c.locations ? c.locations.length : 0) + ' Konum';
+        locCont.innerHTML = '';
+        if (c.locations && c.locations.length > 0) {
+          c.locations.forEach(l => {
+            const card = document.createElement('div');
+            card.className = 'p-5 rounded-3xl border border-rose-950/80 bg-[#180a13] space-y-3 shadow-xs';
+            card.innerHTML = `
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-rose-400 font-sans-clean">${l.date || ''}</span>
+                <span class="text-lg">📍</span>
+              </div>
+              <div>
+                <h4 class="font-serif-romantic text-lg font-bold text-rose-100">${l.title || ''}</h4>
+                <p class="text-xs font-semibold text-rose-400 font-sans-clean">${l.locationName || ''}</p>
+              </div>
+              ${l.description ? `<p class="font-serif-romantic text-sm text-rose-200/80 italic">${l.description}</p>` : ''}
+              <div class="pt-2">
+                <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(l.locationName || l.title)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs text-rose-400 hover:text-rose-300 font-semibold font-sans-clean">
+                  <span>Haritada Görüntüle</span><span>→</span>
+                </a>
+              </div>
+            `;
+            locCont.appendChild(card);
+          });
+        } else {
+          locCont.innerHTML = '<p class="text-xs italic opacity-40 text-center py-8">Henüz hatıra mekanı eklenmemiş.</p>';
+        }
+
+        // Filigran Kelimeleri
+        const bgWrp = document.getElementById('bg-words-watermark');
+        bgWrp.innerHTML = '';
+        if (c.backgroundWords && c.backgroundWords.length > 0) {
+          c.backgroundWords.forEach(w => {
+            const span = document.createElement('span');
+            span.textContent = w;
+            bgWrp.appendChild(span);
+          });
+        }
+      }
+
+      function toggleLikeWhisper(id) {
+        state.likedWhispers[id] = !state.likedWhispers[id];
+        renderApp();
+      }
+
+      function copyWhisper(id, enc) {
+        const text = decodeURIComponent(enc);
+        navigator.clipboard.writeText(text);
+        alert('Kopyalandı: ' + text);
+      }
+
+      function openLightbox(url, caption) {
+        document.getElementById('lightbox-img').src = url;
+        document.getElementById('lightbox-caption').textContent = caption;
+        document.getElementById('lightbox-modal').classList.remove('hidden');
+      }
+
+      function closeLightbox() {
+        document.getElementById('lightbox-modal').classList.add('hidden');
+      }
+
+      // ⚙️ AYARLAR MODAL YÖNETİMİ
+      function openAdminModal() {
+        const c = state.config;
+        document.getElementById('cfg-start-date').value = c.counter.startDate || '';
+        document.getElementById('cfg-counter-title').value = c.counter.title || '';
+        document.getElementById('cfg-counter-subtitle').value = c.counter.subtitle || '';
+        document.getElementById('cfg-welcome-quote').value = c.welcome.quote || '';
+        document.getElementById('cfg-welcome-subquote').value = c.welcome.subQuote || '';
+        document.getElementById('cfg-welcome-author').value = c.welcome.author || '';
+
+        setLetterMode(c.letter.displayMode || 'letter');
+        document.getElementById('cfg-letter-title').value = c.letter.title || '';
+        document.getElementById('cfg-letter-subtitle').value = c.letter.subtitle || '';
+        document.getElementById('cfg-letter-body').value = c.letter.body || '';
+        document.getElementById('cfg-poem-title').value = c.letter.poemTitle || '';
+        document.getElementById('cfg-poem-subtitle').value = c.letter.poemSubtitle || '';
+        document.getElementById('cfg-poem-body').value = c.letter.poemBody || '';
+
+        document.getElementById('cfg-url-token').value = c.security.urlToken || 'bizim3yilimiz';
+        document.getElementById('cfg-new-password').value = '';
+        document.getElementById('cfg-password-hint').value = c.security.passwordHint || '';
+
+        renderAdminLists();
+        switchAdminTab('general');
+        document.getElementById('admin-modal').classList.remove('hidden');
+      }
+
+      function closeAdminModal() {
+        document.getElementById('admin-modal').classList.add('hidden');
+      }
+
+      function switchAdminTab(t) {
+        ['general', 'letter', 'security', 'memories', 'locations', 'whispers'].forEach(tab => {
+          const btn = document.getElementById('admtab-btn-' + tab);
+          const pane = document.getElementById('admpane-' + tab);
+          if (tab === t) {
+            btn.className = 'px-3 py-1.5 rounded-xl border border-rose-500 bg-rose-500 text-white font-semibold whitespace-nowrap';
+            pane.classList.remove('hidden');
+          } else {
+            btn.className = 'px-3 py-1.5 rounded-xl border border-rose-900/60 bg-[#12050e] text-rose-200 whitespace-nowrap';
+            pane.classList.add('hidden');
+          }
+        });
+      }
+
+      function setLetterMode(m) {
+        state.letterMode = m;
+        const bL = document.getElementById('btn-mode-letter');
+        const bP = document.getElementById('btn-mode-poem');
+        if (m === 'letter') {
+          bL.className = 'py-2.5 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all bg-rose-500 text-white border-rose-500 shadow-xs';
+          bP.className = 'py-2.5 px-3 rounded-xl border text-xs font-medium flex items-center justify-center gap-1.5 transition-all bg-[#1b0815] border-rose-900/60 text-rose-200';
+        } else {
+          bP.className = 'py-2.5 px-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all bg-rose-500 text-white border-rose-500 shadow-xs';
+          bL.className = 'py-2.5 px-3 rounded-xl border text-xs font-medium flex items-center justify-center gap-1.5 transition-all bg-[#1b0815] border-rose-900/60 text-rose-200';
+        }
+      }
+
+      function renderAdminLists() {
+        // Anılar Listesi
+        const memWrap = document.getElementById('adm-memories-list');
+        memWrap.innerHTML = '';
+        state.config.memories.forEach((m, idx) => {
+          const div = document.createElement('div');
+          div.className = 'p-3 rounded-xl border border-rose-950 bg-[#12050e] flex items-center justify-between text-xs';
+          div.innerHTML = `<span>${m.title} (${m.date || ''})</span><button type="button" onclick="deleteMemory(${idx})" class="text-rose-400 hover:text-rose-200">Sil ✕</button>`;
+          memWrap.appendChild(div);
+        });
+
+        // Konumlar Listesi
+        const locWrap = document.getElementById('adm-locations-list');
+        locWrap.innerHTML = '';
+        state.config.locations.forEach((l, idx) => {
+          const div = document.createElement('div');
+          div.className = 'p-3 rounded-xl border border-rose-950 bg-[#12050e] flex items-center justify-between text-xs';
+          div.innerHTML = `<span>${l.title} - ${l.locationName}</span><button type="button" onclick="deleteLocation(${idx})" class="text-rose-400 hover:text-rose-200">Sil ✕</button>`;
+          locWrap.appendChild(div);
+        });
+
+        // Fısıltılar Listesi
+        const whWrap = document.getElementById('adm-whispers-list');
+        whWrap.innerHTML = '';
+        state.config.whispers.forEach((w, idx) => {
+          const div = document.createElement('div');
+          div.className = 'p-3 rounded-xl border border-rose-950 bg-[#12050e] flex items-center justify-between text-xs';
+          div.innerHTML = `<span class="truncate max-w-[80%]">"${w.text}"</span><button type="button" onclick="deleteWhisper(${idx})" class="text-rose-400 hover:text-rose-200">Sil ✕</button>`;
+          whWrap.appendChild(div);
+        });
+      }
+
+      function addNewMemory() {
+        const title = document.getElementById('new-mem-title').value.trim();
+        const date = document.getElementById('new-mem-date').value.trim();
+        const desc = document.getElementById('new-mem-desc').value.trim();
+        const fileInput = document.getElementById('new-mem-file');
+
+        if (!title) return alert('Lütfen bir başlık girin');
+
+        const addRecord = (imgUrl) => {
+          state.config.memories.push({
+            id: 'mem-' + Date.now(),
+            title,
+            date,
+            description: desc,
+            imageUrl: imgUrl || ''
+          });
+          document.getElementById('new-mem-title').value = '';
+          document.getElementById('new-mem-date').value = '';
+          document.getElementById('new-mem-desc').value = '';
+          fileInput.value = '';
+          renderAdminLists();
+        };
+
+        if (fileInput.files && fileInput.files[0]) {
+          const reader = new FileReader();
+          reader.onload = e => addRecord(e.target.result);
+          reader.readAsDataURL(fileInput.files[0]);
+        } else {
+          addRecord('');
+        }
+      }
+
+      function deleteMemory(idx) {
+        state.config.memories.splice(idx, 1);
+        renderAdminLists();
+      }
+
+      function addNewLocation() {
+        const title = document.getElementById('new-loc-title').value.trim();
+        const name = document.getElementById('new-loc-name').value.trim();
+        const date = document.getElementById('new-loc-date').value.trim();
+        const desc = document.getElementById('new-loc-desc').value.trim();
+        if (!title || !name) return alert('Lütfen başlık ve mekan adını girin');
+
+        state.config.locations.push({
+          id: 'loc-' + Date.now(),
+          title,
+          locationName: name,
+          date,
+          description: desc
+        });
+        document.getElementById('new-loc-title').value = '';
+        document.getElementById('new-loc-name').value = '';
+        document.getElementById('new-loc-date').value = '';
+        document.getElementById('new-loc-desc').value = '';
+        renderAdminLists();
+      }
+
+      function deleteLocation(idx) {
+        state.config.locations.splice(idx, 1);
+        renderAdminLists();
+      }
+
+      function addNewWhisper() {
+        const text = document.getElementById('new-whisper-text').value.trim();
+        if (!text) return alert('Lütfen fısıltı metnini yazın');
+
+        state.config.whispers.push({
+          id: 'wh-' + Date.now(),
+          text,
+          author: 'Sonsuz Aşkla'
+        });
+        document.getElementById('new-whisper-text').value = '';
+        renderAdminLists();
+      }
+
+      function deleteWhisper(idx) {
+        state.config.whispers.splice(idx, 1);
+        renderAdminLists();
+      }
+
+      async function saveAllSettings() {
+        const newPassword = document.getElementById('cfg-new-password').value.trim();
+        let passHash = state.config.security.passwordHash;
+        if (newPassword) {
+          passHash = await hashPassword(newPassword);
+        }
+
+        const updated = {
+          ...state.config,
+          counter: {
+            startDate: document.getElementById('cfg-start-date').value,
+            title: document.getElementById('cfg-counter-title').value.trim(),
+            subtitle: document.getElementById('cfg-counter-subtitle').value.trim()
+          },
+          welcome: {
+            quote: document.getElementById('cfg-welcome-quote').value.trim(),
+            subQuote: document.getElementById('cfg-welcome-subquote').value.trim(),
+            author: document.getElementById('cfg-welcome-author').value.trim()
+          },
+          letter: {
+            title: document.getElementById('cfg-letter-title').value.trim(),
+            subtitle: document.getElementById('cfg-letter-subtitle').value.trim(),
+            body: document.getElementById('cfg-letter-body').value,
+            poemTitle: document.getElementById('cfg-poem-title').value.trim(),
+            poemSubtitle: document.getElementById('cfg-poem-subtitle').value.trim(),
+            poemBody: document.getElementById('cfg-poem-body').value,
+            displayMode: state.letterMode
+          },
+          security: {
+            ...state.config.security,
+            urlToken: document.getElementById('cfg-url-token').value.trim() || 'bizim3yilimiz',
+            passwordHash: passHash,
+            passwordHint: document.getElementById('cfg-password-hint').value.trim()
+          }
+        };
+
+        saveConfig(updated);
+
+        const fb = document.getElementById('save-feedback');
+        fb.classList.remove('hidden');
+        setTimeout(() => fb.classList.add('hidden'), 2500);
+      }
+
+      function resetAllData() {
+        if (!confirm('DİKKAT: Tüm anılar, sözler ve metinler sıfırlanacak. Devam etmek istiyor musunuz?')) return;
+        const cleared = {
+          ...DEFAULT_CONFIG,
+          security: { ...state.config.security }
+        };
+        saveConfig(cleared);
+        openAdminModal();
+      }
+
+      // 💫 Arka Plan Yıldız/Parçacık Efekti
+      function initParticles() {
+        const canvas = document.getElementById('particles-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = canvas.offsetWidth;
+        let height = canvas.height = canvas.offsetHeight;
+
+        window.addEventListener('resize', () => {
+          width = canvas.width = canvas.offsetWidth;
+          height = canvas.height = canvas.offsetHeight;
+        });
+
+        const particles = Array.from({ length: 45 }, () => ({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          size: Math.random() * 1.8 + 0.6,
+          speedY: Math.random() * 0.4 + 0.1,
+          opacity: Math.random() * 0.6 + 0.2
+        }));
+
+        function loop() {
+          ctx.clearRect(0, 0, width, height);
+          particles.forEach(p => {
+            p.y -= p.speedY;
+            if (p.y < 0) {
+              p.y = height;
+              p.x = Math.random() * width;
+            }
+            ctx.fillStyle = `rgba(255, 180, 200, ${p.opacity})`;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+          });
+          requestAnimationFrame(loop);
+        }
+        loop();
+      }
+
+      // 🚀 Başlatıcı
+      window.addEventListener('DOMContentLoaded', () => {
+        checkToken();
+        applyTheme();
+        renderApp();
+        initParticles();
+
+        // Firebase Realtime DB Başlatıcı (Yalnızca geçerli bir databaseURL varsa başlatılır)
+        const hasValidDbUrl = Boolean(
+          firebaseConfig &&
+          firebaseConfig.databaseURL &&
+          typeof firebaseConfig.databaseURL === 'string' &&
+          firebaseConfig.databaseURL.trim().startsWith('https://')
+        );
+
+        if (typeof firebase !== 'undefined' && firebaseConfig && firebaseConfig.apiKey && hasValidDbUrl) {
+          try {
+            if (!firebase.apps.length) {
+              firebase.initializeApp(firebaseConfig);
+            }
+            firebaseDb = firebase.database();
+            // Veri Dinleyici
+            firebaseDb.ref('appConfig').on('value', snapshot => {
+              const val = snapshot.val();
+              if (val) {
+                state.config = {
+                  ...DEFAULT_CONFIG,
+                  ...val,
+                  security: { ...DEFAULT_CONFIG.security, ...(val.security || {}) },
+                  counter: { ...DEFAULT_CONFIG.counter, ...(val.counter || {}) },
+                  welcome: { ...DEFAULT_CONFIG.welcome, ...(val.welcome || {}) },
+                  letter: { ...DEFAULT_CONFIG.letter, ...(val.letter || {}) }
+                };
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(state.config));
+                renderApp();
+              }
+            });
+          } catch (e) {
+            console.warn('Firebase başlatılamadı, yerel modda devam ediliyor:', e);
+          }
+        }
+      });
+    </script>
   </body>
 </html>
-
